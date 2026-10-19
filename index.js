@@ -8,6 +8,7 @@ function loadMinutes() {
 
 const WORK_SECONDS = loadMinutes() * 60;
 
+const clockEl = document.getElementById("clock");
 const timerEl = document.getElementById("timer");
 const startBtn = document.getElementById("start");
 const stopBtn = document.getElementById("stop");
@@ -43,6 +44,10 @@ function resetTimer() {
   render();
 }
 
+function renderClock() {
+  clockEl.textContent = new Date().toLocaleTimeString("ko-KR", { hour12: false });
+}
+
 startBtn.onclick = startTimer;
 stopBtn.onclick = stopTimer;
 resetBtn.onclick = resetTimer;
@@ -51,3 +56,5 @@ settingsBtn.onclick = () => {
 };
 
 render();
+renderClock();
+setInterval(renderClock, 1000);
